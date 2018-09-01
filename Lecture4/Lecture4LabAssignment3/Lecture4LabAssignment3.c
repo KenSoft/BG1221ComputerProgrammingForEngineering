@@ -22,4 +22,5 @@ int main() {
 		r = getchar();
 		
 	} while (getchar() != 'N');
+	return 0;
 }

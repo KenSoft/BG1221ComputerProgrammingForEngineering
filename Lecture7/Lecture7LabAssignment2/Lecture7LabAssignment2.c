@@ -35,5 +35,5 @@ int main() {
 	printf("%-8d %-8d\n", 4, four);
 	printf("%-8d %-8d\n", 5, five);
 	printf("%-8d %-8d\n", 6, six);
-
+	return 0;
 }

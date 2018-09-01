@@ -18,4 +18,5 @@ int main() {
 	printf("The approximated value of e : %.12lf\n", approxE);
 	printf("The given mathematical constant e = %.12lf\n", E);
 	printf("The absolute difference between the two value : %.12lf\n", fabs(E-approxE));
+	return 0;
 }

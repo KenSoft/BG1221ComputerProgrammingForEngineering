@@ -56,7 +56,7 @@ int main() {
 	} while (getchar() != EOF);
 	End:
 	printf("\nTotals for each letter grade are :\nA : %d\nB : %d\nC : %d\nD : %d\nF : %d\nNumber of students pass the exam : %d\nNumber of students fail the exam : %d\n",aCount,bCount,cCount,dCount,fCount, (aCount + bCount + cCount), (dCount+fCount));
-
+	return 0;
 
 
 }
