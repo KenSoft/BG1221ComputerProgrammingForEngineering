@@ -1,0 +1,4 @@
+﻿  Lecture2Exercise2.c
+c:\users\ken15\documents\visual studio 2017\projects\lecture2exercise2\lecture2exercise2\lecture2exercise2.c(3): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Lecture2Exercise2.vcxproj -> c:\users\ken15\documents\visual studio 2017\Projects\Lecture2Exercise2\Debug\Lecture2Exercise2.exe
+  Lecture2Exercise2.vcxproj -> c:\users\ken15\documents\visual studio 2017\Projects\Lecture2Exercise2\Debug\Lecture2Exercise2.pdb (Partial PDB)

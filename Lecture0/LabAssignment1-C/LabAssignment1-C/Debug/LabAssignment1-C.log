@@ -1,0 +1,4 @@
+﻿  LabAssignment1-C.c
+c:\users\ken15\documents\visual studio 2017\projects\labassignment1-c\labassignment1-c\labassignment1-c.c(9): warning C4013: 'system' undefined; assuming extern returning int
+  LabAssignment1-C.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\LabAssignment1-C\Debug\LabAssignment1-C.exe
+  LabAssignment1-C.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\LabAssignment1-C\Debug\LabAssignment1-C.pdb (Partial PDB)

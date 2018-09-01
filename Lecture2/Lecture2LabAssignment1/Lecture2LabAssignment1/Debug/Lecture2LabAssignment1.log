@@ -1,0 +1,4 @@
+﻿  Lecture2LabAssignment1.c
+c:\users\ken15\documents\visual studio 2017\projects\lecture2labassignment1\lecture2labassignment1\lecture2labassignment1.c(17): warning C4476: 'printf' : unknown type field character 'b' in format specifier
+  Lecture2LabAssignment1.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\Lecture2LabAssignment1\Debug\Lecture2LabAssignment1.exe
+  Lecture2LabAssignment1.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\Lecture2LabAssignment1\Debug\Lecture2LabAssignment1.pdb (Partial PDB)

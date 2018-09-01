@@ -1,0 +1,11 @@
+﻿  Lecture2Exercise1.c
+c:\users\ken15\documents\visual studio 2017\projects\lecture2exercises1\lecture2exercises1\lecture2exercise1.c(5): warning C4101: 'a': unreferenced local variable
+c:\users\ken15\documents\visual studio 2017\projects\lecture2exercises1\lecture2exercises1\lecture2exercise1.c(4): warning C4101: 'z': unreferenced local variable
+c:\users\ken15\documents\visual studio 2017\projects\lecture2exercises1\lecture2exercises1\lecture2exercise1.c(5): warning C4101: 'b': unreferenced local variable
+c:\users\ken15\documents\visual studio 2017\projects\lecture2exercises1\lecture2exercises1\lecture2exercise1.c(4): warning C4101: 'y': unreferenced local variable
+c:\users\ken15\documents\visual studio 2017\projects\lecture2exercises1\lecture2exercises1\lecture2exercise1.c(3): warning C4101: 'p': unreferenced local variable
+c:\users\ken15\documents\visual studio 2017\projects\lecture2exercises1\lecture2exercises1\lecture2exercise1.c(3): warning C4101: 'q': unreferenced local variable
+c:\users\ken15\documents\visual studio 2017\projects\lecture2exercises1\lecture2exercises1\lecture2exercise1.c(5): warning C4101: 'c': unreferenced local variable
+c:\users\ken15\documents\visual studio 2017\projects\lecture2exercises1\lecture2exercises1\lecture2exercise1.c(4): warning C4101: 'x': unreferenced local variable
+  Lecture2Exercises1.vcxproj -> c:\users\ken15\documents\visual studio 2017\Projects\Lecture2Exercises1\Debug\Lecture2Exercises1.exe
+  Lecture2Exercises1.vcxproj -> c:\users\ken15\documents\visual studio 2017\Projects\Lecture2Exercises1\Debug\Lecture2Exercises1.pdb (Partial PDB)
