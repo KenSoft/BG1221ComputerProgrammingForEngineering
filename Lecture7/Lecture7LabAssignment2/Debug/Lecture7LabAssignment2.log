@@ -1,0 +1,4 @@
+﻿  Lecture7LabAssignment2.c
+c:\users\ken15\documents\visual studio 2017\projects\bg1221computerprogrammingforengineering\lecture7\lecture7labassignment2\lecture7labassignment2.c(8): warning C4101: 'random': unreferenced local variable
+  Lecture7LabAssignment2.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\BG1221ComputerProgrammingForEngineering\Lecture7\Debug\Lecture7LabAssignment2.exe
+  Lecture7LabAssignment2.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\BG1221ComputerProgrammingForEngineering\Lecture7\Debug\Lecture7LabAssignment2.pdb (Partial PDB)
