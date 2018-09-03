@@ -1,0 +1,12 @@
+﻿  Lecture8LabAssignment8.c
+c:\users\ken15\documents\visual studio 2017\projects\bg1221computerprogrammingforengineering\lecture8\lecture8labassignment1\lecture8labassignment8.c(11): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.14393.0\ucrt\stdio.h(1269): note: see declaration of 'scanf'
+c:\users\ken15\documents\visual studio 2017\projects\bg1221computerprogrammingforengineering\lecture8\lecture8labassignment1\lecture8labassignment8.c(13): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.14393.0\ucrt\stdio.h(1269): note: see declaration of 'scanf'
+c:\users\ken15\documents\visual studio 2017\projects\bg1221computerprogrammingforengineering\lecture8\lecture8labassignment1\lecture8labassignment8.c(15): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.14393.0\ucrt\stdio.h(1269): note: see declaration of 'scanf'
+c:\users\ken15\documents\visual studio 2017\projects\bg1221computerprogrammingforengineering\lecture8\lecture8labassignment1\lecture8labassignment8.c(17): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.14393.0\ucrt\stdio.h(1269): note: see declaration of 'scanf'
+c:\users\ken15\documents\visual studio 2017\projects\bg1221computerprogrammingforengineering\lecture8\lecture8labassignment1\lecture8labassignment8.c(9): warning C4101: 'sum': unreferenced local variable
+  Lecture8LabAssignment1.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\BG1221ComputerProgrammingForEngineering\Lecture8\Debug\Lecture8LabAssignment1.exe
+  Lecture8LabAssignment1.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\BG1221ComputerProgrammingForEngineering\Lecture8\Debug\Lecture8LabAssignment1.pdb (Partial PDB)
