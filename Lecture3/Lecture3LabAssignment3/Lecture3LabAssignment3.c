@@ -7,7 +7,7 @@ int main() {
 	int x1, x2, y1, y2;
 	double distance;
 	printf("Input two coordinates to find the distance between them in format x1 y1 x2 y2: ");
-	scanf("%d %d %d %d", &x1, &y1, &x2, &y2); /* ( ) can't be used in older */
+	scanf("%d %d %d %d", &x1, &y1, &x2, &y2); /* ( ) can't be used in older version*/
 	distance = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2));
 	printf("The distance between two points is %.2lf\n", distance);
 
