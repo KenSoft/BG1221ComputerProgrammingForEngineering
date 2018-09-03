@@ -6,11 +6,12 @@ This program read 4 different floating number from keyboard then find summation,
 #include <math.h>
 int main() {
 	double a, b, c, d, sum, product, avg;
+	printf("please input a b c d :");
 	scanf("%lf %lf %lf %lf", &a, &b, &c, &d);
 	printf("a is %lf b is %lf c is %lf d is %lf\n", a, b, c, d);
 	sum = a + b + c + d;
 	product = a*b*c*d;
-	avg = (sum / 2);
+	avg = (sum / 4);
 
 	printf("sum is %.3lf product is %.3lf average is %.3lf\n", sum, product, avg);
 
