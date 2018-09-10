@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <math.h>
 int main() {
-	/*int i = 2, count = 0, product = 1;
+	int i = 0, count = 0, product = 1;
 
-	while (count < 3) {
+	while (count < 5) {
 		i = i + 2;
 		product = product*i;
 		count++;
 	}
-	printf("%d", product);
-	return 0;*/
+	printf("%d\n", product);
+	return 0;
 	/*int sum = 0;
 	for (int count = 1; count <= 15; count = count + 2) {
 
@@ -18,7 +18,7 @@ int main() {
 	}
 	printf("%d", sum);*/
 
-	int i = 1, sum = 0;
+	/*int i = 1, sum = 0;
 	while (i <= 20)
 	{
 		if (i % 5 == 0)
@@ -28,5 +28,5 @@ int main() {
 		}
 		i = i + 1;
 	}
-	printf("\nSum = %d\n", sum);
+	printf("\nSum = %d\n", sum);*/
 }
