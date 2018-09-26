@@ -7,26 +7,32 @@ This program calculate the factorial for a given positive interger. */
 int main() {
 	int n;
 	double p;
-	inputStr:
-	printf("Input a number to calculate its factorial :");
-	scanf("%d",&n);
-	if (n == 0) {
-		p = 1;
-		printf("The factorial of %d is %lf.\n", n, p);
-	}
-	else if (n > 0){
-		int i = 1;
-		p = 1;
-		while (i<=n) {
-			p = p*i;
-			i++;
+	int i = 1;
+	char r = 'Y';
+	/*inputStr: */
+	while (r == 'Y' || r == 'y') {
+		printf("Input a number to calculate its factorial :");
+		scanf("%d", &n);
+		if (n == 0) {
+			p = 1;
+			printf("The factorial of %d is %lf.\n", n, p);
+			r = 'N';
 		}
-		printf("The factorial of %d is %lf.\n", n, p);
+		else if (n > 0) {
+			i = 1; /* can't declare over already declared variable*/
+			p = 1;
+			while (i <= n) {
+				p = p*i;
+				i++;
+			}
+			printf("The factorial of %d is %lf.\n", n, p);
+			r = 'N';
+		}
+		else {
+			printf("Incorrect Input!\n");
+		}
 	}
-	else {
-		printf("Incorrect Input!\n");
-		goto inputStr;
-	}
+	/* no goto*/
 
 
 	return 0;

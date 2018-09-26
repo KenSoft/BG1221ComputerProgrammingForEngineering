@@ -6,8 +6,8 @@ This program find the average of 5 numbers using while loop */
 #include <math.h>
 int main() {
 	double k, i, j;
-	char r;
-	do {
+	char r = 'Y';
+	while (r=='Y'||r=='y'){
 		j = 1;
 		k = 0;
 		while (j <= 5) {
@@ -19,8 +19,8 @@ int main() {
 		k = k / 5;
 		printf("The average of a list of numbers = %lf\n", k);
 		printf("Do you want to find the average of another list of numbers (Y/N) :");
-		r = getchar();
+		scanf(" %c", &r);
 		
-	} while (getchar() != 'N');
+	} 
 	return 0;
 }

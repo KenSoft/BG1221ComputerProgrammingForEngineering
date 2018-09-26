@@ -5,11 +5,12 @@ This program find the maximum and minimum value for given number list */
 #include <stdio.h>
 #include <math.h>
 int main() {
-	int max = 0, min = 0, i = 0, input = 0;
+	int max, min, i = 0, input = 0;
 	while (i < 10) {
 		if (i == 0) {
 			printf("Enter the first number :");
 			scanf("%d", &input);
+			max = min = input;
 		}
 		else {
 			printf("Enter the next number :");

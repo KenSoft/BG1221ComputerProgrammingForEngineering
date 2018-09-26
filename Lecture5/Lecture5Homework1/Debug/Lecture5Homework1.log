@@ -1,5 +1,6 @@
 ﻿  Lecture5Homework1.c
-c:\users\ken15\documents\visual studio 2017\projects\lecture5\lecture5homework1\lecture5homework1.c(12): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+c:\users\ken15\documents\visual studio 2017\projects\bg1221computerprogrammingforengineering\lecture5\lecture5homework1\lecture5homework1.c(12): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.14393.0\ucrt\stdio.h(1269): note: see declaration of 'scanf'
-  Lecture5Homework1.vcxproj -> C:\Users\ken15\documents\visual studio 2017\Projects\Lecture5\Debug\Lecture5Homework1.exe
-  Lecture5Homework1.vcxproj -> C:\Users\ken15\documents\visual studio 2017\Projects\Lecture5\Debug\Lecture5Homework1.pdb (Partial PDB)
+c:\users\ken15\documents\visual studio 2017\projects\bg1221computerprogrammingforengineering\lecture5\lecture5homework1\lecture5homework1.c(35): warning C4102: 'end': unreferenced label
+  Lecture5Homework1.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\BG1221ComputerProgrammingForEngineering\Lecture5\Debug\Lecture5Homework1.exe
+  Lecture5Homework1.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\BG1221ComputerProgrammingForEngineering\Lecture5\Debug\Lecture5Homework1.pdb (Partial PDB)

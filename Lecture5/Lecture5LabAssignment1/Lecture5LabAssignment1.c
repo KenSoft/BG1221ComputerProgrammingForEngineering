@@ -9,21 +9,20 @@ int main() {
 	do {
 		printf("Enter the gallons used (-1 to end) :");
 		scanf("%lf", &gallon);
-		if (gallon == -1) {
-			goto endPg;
+		if (gallon != -1) {
+			printf("Enter the miles driven :");
+			scanf("%lf", &mile);
+			totalMiles = totalMiles + mile;
+			totalGallon = totalGallon + gallon;
+			tankRate = mile / gallon;
+			printf("The miles/gallon for this tank was : %lf\n\n", tankRate);
 		}
-		printf("Enter the miles driven :");
-		scanf("%lf", &mile);
-		totalMiles = totalMiles + mile;
-		totalGallon = totalGallon + gallon;
-		tankRate = mile / gallon;
-		printf("The miles/gallon for this tank was : %lf\n", tankRate);
+
 		
 	} while (gallon != -1);
 
-endPg:
 	rate = totalMiles / totalGallon;
-	printf("The overall average miles/gallon was %lf\n", rate);
+	printf("\nThe overall average miles/gallon was %lf\n", rate);
 
 	return 0;
 }

@@ -27,9 +27,11 @@ int main() {
 	}
 	else if (rootNature < 0) {
 		/* two imaginary root*/
-		printf("No root found!\n");
+		x1 = sqrt(fabs(pow(b, 2) - (4 * a*c))) / (2 * a);
+		x2 = - sqrt(fabs(pow(b, 2) - (4 * a*c))) / (2 * a);
+		printf("x1 = (%.4lf, %.4lfi)\n", (double)(-b/(2*a)), x1);
+		printf("x2 = (%.4lf, %.4lfi)\n", (double)(-b/(2*a)), x2);
 	}
-
 
 
 	return 0;

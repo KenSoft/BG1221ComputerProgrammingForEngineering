@@ -11,10 +11,10 @@ int main() {
 		printf("Enter exam score (-1 to exit) :");
 		scanf("%d", &inputScore);
 
-		if (inputScore == -1) {
-			goto end;
-		}
-		else if (inputScore > 100 || inputScore < 0) {
+		if (inputScore != -1) {
+			
+		
+		if (inputScore > 100 || inputScore < 0) {
 			printf("You have entered an invalid exam score.\n");
 		}
 		else if (inputScore >= 50) {
@@ -29,7 +29,7 @@ int main() {
 			totalScore = totalScore + inputScore;
 			/* fail */
 		}
-
+		}
 	} while (inputScore != -1);
 
 end:
