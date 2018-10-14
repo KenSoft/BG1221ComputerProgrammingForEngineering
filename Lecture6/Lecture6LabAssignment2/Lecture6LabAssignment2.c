@@ -20,7 +20,7 @@ int main() {
 			break;
 		case 3:
 			sony++;
-			printf("It is from Spny Corporation.\n");
+			printf("It is from Sony Corporation.\n");
 			break;
 		case 4:
 			verbatim++;

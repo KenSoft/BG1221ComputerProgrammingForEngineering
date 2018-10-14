@@ -8,8 +8,8 @@ int main() {
 	F = 75.0;
 	C = (F - 32)*(5.0/9.0);
 
-	printf("%f", F);
-	printf(" Degree Fahrenheit is equal to %f", C);
+	printf("%lf", F);
+	printf(" Degree Fahrenheit is equal to %lf", C);
 	printf(" Degree Celcius.\n");
 	return 0;
 }
