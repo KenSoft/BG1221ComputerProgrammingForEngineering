@@ -1,0 +1,4 @@
+﻿  CarParkingSystem.c
+c:\users\ken15\documents\visual studio 2017\projects\bg1221computerprogrammingforengineering\bg1221project\carparkingsystem\carparkingsystem.c(3): warning C4305: 'initializing': truncation from 'double' to 'float'
+  CarParkingSystem.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\BG1221ComputerProgrammingForEngineering\BG1221Project\Debug\CarParkingSystem.exe
+  CarParkingSystem.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\BG1221ComputerProgrammingForEngineering\BG1221Project\Debug\CarParkingSystem.pdb (Partial PDB)
