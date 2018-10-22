@@ -47,12 +47,12 @@ void configIO() {
 
 double parkingFeeRateSetup() {
 	// This function receive parking fee rate from the user
-	int rateCount,rate[9][1],count;
+	int rateCount, rate[10][2] = {0}, count, hour, displayLoop;
 	printf("\n");
 	printf("---Parking Fee Rate Setup Wizard---\n");
 	printf("How many parking fee rate are there? (including free parking) :");
 	scanf("%d", &rateCount);
-	while (rateCount < 1 || rateCount>9) {
+	while (rateCount < 1 || rateCount>10) {
 		printf("Incorrect Input!! How many parking fee rate are there? (including free parking) :");
 		scanf("%d", &rateCount);
 	}
@@ -61,12 +61,19 @@ double parkingFeeRateSetup() {
 			printf("How much time (in minutes) can people park without any fee?:");
 			scanf("%d", &rate[0][0]);
 			rate[0][1] = 0;
-			printf("%-15s %-4s\n", "Time (Minutes)", "Fee");
-			printf("%-15d %-4d\n", rate[0][0], rate[0][1]);
+			printf("%-15s %-15s\n", "Time (Minutes)", "Fee per hour");
+			printf("%-15d %-15d\n", rate[0][0], rate[0][1]);
 		}
 		else {
-			printf("");
-
+			printf("\nHow many hours from the start does this rate apply?:");
+			scanf("%d", &hour);
+			rate[count][0] = hour*60;
+			printf("How much fee per hour?:");
+			scanf("%d", &rate[count][1]);
+			printf("%-15s %-15s\n", "Time (Minutes)", "Fee per hour");
+			for (displayLoop=0; displayLoop <= count; displayLoop++) {
+				printf("%-15d %-15d\n", rate[displayLoop][0], rate[displayLoop][1]);
+			}
 		}
 
 	}
