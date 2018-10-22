@@ -4,8 +4,10 @@ Lab Assignment 7-2 Due 15th October 2018
 This program roll the dice 6,000 times and show the results. */
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 int main() {
 	int i,random,one=0,two=0,three=0,four=0,five=0,six=0;
+	srand(time(NULL));
 	for (i = 0; i < 6000; i++) {
 		switch (rand() % 6) {
 		case 0:
