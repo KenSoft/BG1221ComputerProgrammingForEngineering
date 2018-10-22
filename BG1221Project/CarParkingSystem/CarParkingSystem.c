@@ -10,7 +10,7 @@ Just Another Car Parking Management System by KenSoftTH */
 #include <stdlib.h>
 #include <math.h>
 void configIO();
-double parkingFeeRateSetup();
+int parkingFeeRateSetup();
 int parkingLotsNumberSetup();
 int checkConfigExist();
 
@@ -29,23 +29,33 @@ int checkConfigExist() {
 }
 
 void configIO() {
-	int floor, parkingLotNumber[100];
+	int floor, parkingLotNumber[100],parkingRate[10][2];
 	// This function read and write the config file
 	// printf("%d", checkConfigExist());
 	if (checkConfigExist()) {
 		// If config file exist --> Not the first time
 		printf("File Existed!\n");
-
+		FILE *file;
+		file = fopen("config.txt", "r");
+		fclose(file);
+		printf("%d", parkingLotNumber[2]);
 	}
 	else {
 		// Config file not exist, so launch the setup process!
 		printf("File not Exist!\n");
 		parkingLotNumber[100] = parkingLotsNumberSetup();
-		parkingFeeRateSetup();
+		parkingRate[10][2] = parkingFeeRateSetup();
+
+		FILE *file;
+		file = fopen("config.txt", "w");
+		fclose(file);
+
+
+		printf("\nSetup Completed!\n");
 	}
 }
 
-double parkingFeeRateSetup() {
+int parkingFeeRateSetup() {
 	// This function receive parking fee rate from the user
 	int rateCount, rate[10][2] = {0}, count, hour, displayLoop;
 	printf("\n");
@@ -77,7 +87,7 @@ double parkingFeeRateSetup() {
 		}
 
 	}
-	return 0;
+	return rate[10][2];
 
 }
 
