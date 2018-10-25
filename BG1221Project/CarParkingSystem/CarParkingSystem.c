@@ -70,13 +70,13 @@ void configIO() {
 	// printf("%d", checkConfigExist());
 	if (checkConfigExist()) {
 		// If config file exist --> Not the first time
-		int count = 0;
+		int count = 0,placeholder;
 		printf("File Existed!\n");
 		FILE *file;
 		file = fopen("config.txt", "r");
 		for (count = 0; count < 100; count++) {
-			fscanf(file, "%d", &parkingLotRead[count]);
-			//printf("Read line %d value %d\n",count, parkingLotRead[count]);
+			fscanf(file, "Floor %d=%d\n",&placeholder, &parkingLotRead[count]);
+			printf("Read line %d value %d\n",count+1, parkingLotRead[count]);
 		}
 		fclose(file);
 	}
@@ -89,8 +89,8 @@ void configIO() {
 
 		FILE *file;
 		file = fopen("config.txt", "w");
-		for (count = 0; count < 100; count++) {
-			fprintf(file,"%d\n",parkingLotNumber[count]);
+		for (count = 1; count <= 100; count++) {
+			fprintf(file,"Floor %d=%d\n",count, parkingLotNumber[count]);
 
 		}
 
