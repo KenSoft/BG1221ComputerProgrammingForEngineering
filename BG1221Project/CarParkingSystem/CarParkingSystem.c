@@ -9,10 +9,13 @@ Just Another Car Parking Management System by KenSoftTH */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <dos.h>
+#include <time.h>
 void configIO();
 int parkingFeeRateSetup();
 int parkingLotsNumberSetup();
 int checkConfigExist();
+int getTime();
 
 int checkConfigExist() {
 	//Check if config.txt exists or not
@@ -27,27 +30,70 @@ int checkConfigExist() {
 		return 0;
 	}
 }
+int getTime() {
+	//int time[6] = { 0,0,0,0,0,0 };
+	int hours, minutes, seconds, day, month, year;
+	int timeArray[6] = {0};
+
+	// time_t is arithmetic time type
+	time_t now;
+
+	// Obtain current time
+	// time() returns the current time of the system as a time_t value
+	time(&now);
+
+	// Convert to local time format and print to stdout
+	//printf("Today is : %s", ctime(&now));
+
+	// localtime converts a time_t value to calendar time and returns a pointer
+	// to a tm structure with its members filled with the corresponding values
+	struct tm *local = localtime(&now);
+
+	timeArray[3] = hours = local->tm_hour;			// get hours since midnight	(0-23)
+	timeArray[4] = minutes = local->tm_min;		// get minutes passed after the hour (0-59)
+	timeArray[5] = seconds = local->tm_sec;		// get seconds passed after the minute (0-59)
+
+	timeArray[2] = day = local->tm_mday;			// get day of month (1 to 31)
+	timeArray[1] = month = local->tm_mon + 1;		// get month of year (0 to 11)
+	timeArray[0] = year = local->tm_year + 1900;	// get year since 1900
+									// print local time
+	// print current date
+
+	return timeArray;
+}
 
 void configIO() {
-	int floor, parkingLotNumber[100],parkingRate[10][2];
+	int floor,parkingRate[10][2];
+	int *parkingLotNumber;
+	int parkingLotRead[100];
 	// This function read and write the config file
 	// printf("%d", checkConfigExist());
 	if (checkConfigExist()) {
 		// If config file exist --> Not the first time
+		int count = 0;
 		printf("File Existed!\n");
 		FILE *file;
 		file = fopen("config.txt", "r");
+		for (count = 0; count < 100; count++) {
+			fscanf(file, "%d", &parkingLotRead[count]);
+			//printf("Read line %d value %d\n",count, parkingLotRead[count]);
+		}
 		fclose(file);
-		printf("%d", parkingLotNumber[2]);
 	}
 	else {
 		// Config file not exist, so launch the setup process!
+		int count = 0;
 		printf("File not Exist!\n");
-		parkingLotNumber[100] = parkingLotsNumberSetup();
+		parkingLotNumber = parkingLotsNumberSetup();
 		parkingRate[10][2] = parkingFeeRateSetup();
 
 		FILE *file;
 		file = fopen("config.txt", "w");
+		for (count = 0; count < 100; count++) {
+			fprintf(file,"%d\n",parkingLotNumber[count]);
+
+		}
+
 		fclose(file);
 
 
@@ -93,7 +139,8 @@ int parkingFeeRateSetup() {
 
 int parkingLotsNumberSetup() {
 	// This function receive the number of parking lots and floor from the user
-	int floor, count, parkingLotNumber[100];
+	int floor, count;
+	static int parkingLotNumber[100];
 	printf("\n---Parking Lots Number Setup Wizard---\n");
 	printf("How many floor does the parking building has? :");
 	scanf("%d", &floor);
@@ -102,13 +149,16 @@ int parkingLotsNumberSetup() {
 		scanf("%d", &parkingLotNumber[count]);
 	}	
 
-	return parkingLotNumber[100];
+	return parkingLotNumber;
 }
 
 
 
 
 void main() {
+	int *time;
+	time = getTime();
+	printf("Time is : %02d:%02d:%02d\nDate is : %02d/%02d/%d\n", time[3], time[4], time[5], time[2], time[1], time[0]);
 	configIO();
 
 }
