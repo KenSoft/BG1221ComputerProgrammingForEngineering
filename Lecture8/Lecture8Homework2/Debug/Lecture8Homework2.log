@@ -1,0 +1,10 @@
+﻿  Lecture8Homework2.c
+c:\users\ken15\documents\visual studio 2017\projects\bg1221computerprogrammingforengineering\lecture8\lecture8homework2\lecture8homework2.c(15): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.14393.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+c:\users\ken15\documents\visual studio 2017\projects\bg1221computerprogrammingforengineering\lecture8\lecture8homework2\lecture8homework2.c(17): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.14393.0\ucrt\stdio.h(1192): note: see declaration of 'fscanf'
+c:\users\ken15\documents\visual studio 2017\projects\bg1221computerprogrammingforengineering\lecture8\lecture8homework2\lecture8homework2.c(19): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.14393.0\ucrt\stdio.h(1192): note: see declaration of 'fscanf'
+c:\users\ken15\documents\visual studio 2017\projects\bg1221computerprogrammingforengineering\lecture8\lecture8homework2\lecture8homework2.c(12): warning C4101: 'placeholder': unreferenced local variable
+  Lecture8Homework2.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\BG1221ComputerProgrammingForEngineering\Lecture8\Debug\Lecture8Homework2.exe
+  Lecture8Homework2.vcxproj -> C:\Users\ken15\Documents\Visual Studio 2017\Projects\BG1221ComputerProgrammingForEngineering\Lecture8\Debug\Lecture8Homework2.pdb (Partial PDB)
