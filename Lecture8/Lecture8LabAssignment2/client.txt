@@ -1,8 +1,0 @@
-100    Jones                          24.50     
-200    John                           345.67    
-300    White                          0.00      
-400    Stone                          -45.23    
-500    Richard                        214.89    
-600    Dale                           1005.30   
-700    Michael                        81.05     
-800    Stacy                          100.10    
