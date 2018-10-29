@@ -12,6 +12,7 @@ void main() {
 	char name[30];
 	int acNumber;
 	double balance;
+	printf("Enter the account number, name and balance.\nEnter EOF(<ctrl>z) to end input.\n\n");
 	while (!feof(stdin)) {
 		client = fopen("client.txt", "a");
 		printf(": ");
