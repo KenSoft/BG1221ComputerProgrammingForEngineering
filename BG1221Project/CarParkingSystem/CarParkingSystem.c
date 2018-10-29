@@ -11,6 +11,7 @@ Just Another Car Parking Management System by KenSoftTH */
 #include <math.h>
 #include <dos.h>
 #include <time.h>
+
 void configIO();
 int parkingFeeRateSetup();
 int parkingLotsNumberSetup();
@@ -50,8 +51,8 @@ int getTime() {
 	struct tm *local = localtime(&now);
 
 	timeArray[3] = hours = local->tm_hour;			// get hours since midnight	(0-23)
-	timeArray[4] = minutes = local->tm_min;		// get minutes passed after the hour (0-59)
-	timeArray[5] = seconds = local->tm_sec;		// get seconds passed after the minute (0-59)
+	timeArray[4] = minutes = local->tm_min;			// get minutes passed after the hour (0-59)
+	timeArray[5] = seconds = local->tm_sec;			// get seconds passed after the minute (0-59)
 
 	timeArray[2] = day = local->tm_mday;			// get day of month (1 to 31)
 	timeArray[1] = month = local->tm_mon + 1;		// get month of year (0 to 11)
