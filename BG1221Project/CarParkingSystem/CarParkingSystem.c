@@ -64,9 +64,11 @@ int getTime() {
 }
 
 void configIO() {
-	int floor,parkingRate[10][2];
+	int floor;
 	int *parkingLotNumber;
+	int parkingRate[11][2] = { 0 };
 	int parkingLotRead[100];
+	int count = 0,countRate = 0;
 	// This function read and write the config file
 	// printf("%d", checkConfigExist());
 	if (checkConfigExist()) {
@@ -75,26 +77,43 @@ void configIO() {
 		printf("File Existed!\n");
 		FILE *file;
 		file = fopen("config.txt", "r");
+
 		for (count = 0; count < 100; count++) {
-			fscanf(file, "Floor %d=%d\n",&placeholder, &parkingLotRead[count]);
-			printf("Read line %d value %d\n",count+1, parkingLotRead[count]);
+			if (count == 0) {
+				fscanf(file, "Floor=%d\n", &parkingLotRead[0]);
+				printf("%d floors\n", parkingLotRead[0]);
+			}
+			else {
+				fscanf(file, "Floor %d=%d\n", &placeholder, &parkingLotRead[count]);
+				printf("Read line %d value %d\n", count + 1, parkingLotRead[count]);
+			}
 		}
+		fscanf(file, "Rate=%d\n", &parkingRate[10][0]);
+		printf("%d rates\n", parkingRate[10][0]);
+		 for (countRate = 0; countRate < 10; countRate++) {
+		 		fscanf(file, "R %d %d\n", &parkingRate[countRate][0], &parkingRate[countRate][1]);
+		 		printf("Read line %d value %d minutes %d baht per hour\n", countRate + 1, parkingRate[countRate][0], parkingRate[countRate][1]);
+		 
+		 }
 		fclose(file);
 	}
 	else {
 		// Config file not exist, so launch the setup process!
-		int count = 0;
+
 		printf("File not Exist!\n");
 		parkingLotNumber = parkingLotsNumberSetup();
-		parkingRate[10][2] = parkingFeeRateSetup();
+		parkingFeeRateSetup(parkingRate);
 
 		FILE *file;
 		file = fopen("config.txt", "w");
-		for (count = 1; count <= 100; count++) {
+		fprintf(file, "Floor=%d\n", parkingLotNumber[0]);
+		for (count = 1; count <= 99; count++) {
 			fprintf(file,"Floor %d=%d\n",count, parkingLotNumber[count]);
-
 		}
-
+		fprintf(file, "Rate=%d\n", parkingRate[10][0]);
+		for (countRate = 0; countRate <= 9; countRate++) {
+			fprintf(file, "R %d %d\n", parkingRate[countRate][0], parkingRate[countRate][1]);
+		}
 		fclose(file);
 
 
@@ -102,13 +121,14 @@ void configIO() {
 	}
 }
 
-int parkingFeeRateSetup() {
+int parkingFeeRateSetup(int rate[11][2]) {
 	// This function receive parking fee rate from the user
-	int rateCount, rate[10][2] = {0}, count, hour, displayLoop;
+	int rateCount, count, hour, displayLoop;
 	printf("\n");
 	printf("---Parking Fee Rate Setup Wizard---\n");
 	printf("How many parking fee rate are there? (including free parking) :");
 	scanf("%d", &rateCount);
+	rate[10][0] = rateCount;
 	while (rateCount < 1 || rateCount>10) {
 		printf("Incorrect Input!! How many parking fee rate are there? (including free parking) :");
 		scanf("%d", &rateCount);
@@ -134,7 +154,7 @@ int parkingFeeRateSetup() {
 		}
 
 	}
-	return rate[10][2];
+	return 0;
 
 }
 
@@ -145,10 +165,15 @@ int parkingLotsNumberSetup() {
 	printf("\n---Parking Lots Number Setup Wizard---\n");
 	printf("How many floor does the parking building has? :");
 	scanf("%d", &floor);
+	while (floor > 99 || floor < 1) {
+		printf("Invalid Input!!! How many floor does the parking building has? :");
+		scanf("%d", &floor);
+	}
 	for (count = 1; count <= floor; count++) {
 		printf("Enter number of parking lots for the floor number %d :", count);
 		scanf("%d", &parkingLotNumber[count]);
 	}	
+	parkingLotNumber[0] = floor;
 
 	return parkingLotNumber;
 }
