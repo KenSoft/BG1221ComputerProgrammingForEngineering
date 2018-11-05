@@ -5,7 +5,7 @@ This program take 2 integers and raised the power*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-int integerPower();
+int integerPower(int base, int exponent);
 void main() {
 	int base, exponent, run;
 	long result;

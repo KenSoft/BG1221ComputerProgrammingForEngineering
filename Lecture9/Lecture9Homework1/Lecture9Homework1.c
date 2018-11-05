@@ -5,9 +5,9 @@ This program read the file and find maximum, minimum, and average of the dataset
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-int maximum();
-int minimum();
-double average();
+int maximum(int inputArray[100]);
+int minimum(int inputArray[100]);
+double average(int inputArray[100]);
 int count = 0;
 void main() {
 	int inputArray[100];

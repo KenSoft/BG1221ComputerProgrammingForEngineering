@@ -5,8 +5,8 @@ This program convert Celcius to Fahrenheit and vise versa*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-double Celcius();
-double Fahrenheit();
+double Celcius(int C);
+double Fahrenheit(int F);
 void main() {
 	FILE *file;
 	file = fopen("temperature.txt", "w");
