@@ -8,25 +8,35 @@ This program take 2 integers and raised the power*/
 double Celcius();
 double Fahrenheit();
 void main() {
+	FILE *file;
+	file = fopen("temperature.txt", "w");
 	int C = 0, F = 32;
 	double Ctemp, Ftemp;
 	printf("Fahrenheit equivalents of Celsius temperatures:\n");
 	printf("%-15s %-15s\n", "Celcius", "Fahrenheit");
+	fprintf(file, "Fahrenheit equivalents of Celsius temperatures:\n");
+	fprintf(file, "%-15s %-15s\n", "Celcius", "Fahrenheit");
 	for (C; C <= 100; C = C + 10) {
 		Ftemp = Celcius(C);
 		
 		printf("%-15d %-15.2lf\n", C, Ftemp);
+		fprintf(file, "%-15d %-15.2lf\n", C, Ftemp);
 	}
 
 	printf("\n");
 
 	printf("Celcius equivalents of Fahrenheit temperatures:\n");
 	printf("%-15s %-15s\n", "Fahrenheit", "Celcius");
+	fprintf(file,"\n");
+
+	fprintf(file, "Celcius equivalents of Fahrenheit temperatures:\n");
+	fprintf(file, "%-15s %-15s\n", "Fahrenheit", "Celcius");
 	for (F; F <= 212; F = F + 20) {
 		Ctemp = Fahrenheit(F);
 		printf("%-15d %-15.2lf\n", F, Ctemp);
+		fprintf(file,"%-15d %-15.2lf\n", F, Ctemp);
 	}
-
+	fclose(file);
 }
 
 double Celcius(int C) {
