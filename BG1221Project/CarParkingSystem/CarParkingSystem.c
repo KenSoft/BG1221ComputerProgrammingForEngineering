@@ -11,13 +11,13 @@ Just Another Car Parking Management System by KenSoftTH */
 #include <math.h>
 #include <dos.h>
 #include <time.h>
-
+// Function Definition
 void configIO();
 int parkingFeeRateSetup();
 int parkingLotsNumberSetup();
 int checkConfigExist();
 int getTime();
-
+// Functions
 int checkConfigExist() {
 	//Check if config.txt exists or not
 	FILE *file;
@@ -62,7 +62,6 @@ int getTime() {
 
 	return timeArray;
 }
-
 void configIO() {
 	int floor;
 	int *parkingLotNumber;
@@ -120,7 +119,6 @@ void configIO() {
 		printf("\nSetup Completed!\n");
 	}
 }
-
 int parkingFeeRateSetup(int rate[11][2]) {
 	// This function receive parking fee rate from the user
 	int rateCount, count, hour, displayLoop;
@@ -157,7 +155,6 @@ int parkingFeeRateSetup(int rate[11][2]) {
 	return 0;
 
 }
-
 int parkingLotsNumberSetup() {
 	// This function receive the number of parking lots and floor from the user
 	int floor, count;
@@ -177,9 +174,6 @@ int parkingLotsNumberSetup() {
 
 	return parkingLotNumber;
 }
-
-
-
 
 void main() {
 	int *time;

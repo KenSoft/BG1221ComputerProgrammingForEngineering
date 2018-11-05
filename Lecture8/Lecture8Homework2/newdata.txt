@@ -1,0 +1,9 @@
+Account  Name                           Balance   
+800      Stacy                          100.10    
+700      Michael                        81.05     
+600      Dale                           1005.30   
+500      Richard                        214.89    
+400      Stone                          -45.23    
+300      White                          0.00      
+200      John                           345.67    
+100      Jones                          24.50     
