@@ -5,10 +5,39 @@ This program take 2 integers and raised the power*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+double Celcius();
+double Fahrenheit();
 void main() {
+	int C = 0, F = 32;
+	double Ctemp, Ftemp;
+	printf("Fahrenheit equivalents of Celsius temperatures:\n");
+	printf("%-15s %-15s\n", "Celcius", "Fahrenheit");
+	for (C; C <= 100; C = C + 10) {
+		Ftemp = Celcius(C);
+		
+		printf("%-15d %-15.2lf\n", C, Ftemp);
+	}
 
+	printf("\n");
 
+	printf("Celcius equivalents of Fahrenheit temperatures:\n");
+	printf("%-15s %-15s\n", "Fahrenheit", "Celcius");
+	for (F; F <= 212; F = F + 20) {
+		Ctemp = Fahrenheit(F);
+		printf("%-15d %-15.2lf\n", F, Ctemp);
+	}
 
+}
 
+double Celcius(int C) {
+	double F;
+	F = (C*(9.0 / 5.0)) + 32;
+	return F;
+
+}
+
+double Fahrenheit(int F) {
+	double C;
+	C = (F - 32)*(5.0 / 9.0);
+	return C;
 }
