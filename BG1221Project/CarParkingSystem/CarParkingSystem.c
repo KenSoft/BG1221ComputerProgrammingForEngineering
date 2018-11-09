@@ -15,8 +15,16 @@ Just Another Car Parking Management System by KenSoftTH */
 void configIO();
 int parkingFeeRateSetup();
 int parkingLotsNumberSetup();
+int menu();
+int carIn();
+int carOut();
+int displayParkingLots();
+int printReport();
 int checkConfigExist();
 int getTime();
+int parkingRate[11][2] = { 0 };
+int parkingLotRead[100];
+int count = 0, countRate = 0;
 // Functions
 int checkConfigExist() {
 	//Check if config.txt exists or not
@@ -65,9 +73,7 @@ int getTime() {
 void configIO() {
 	int floor;
 	int *parkingLotNumber;
-	int parkingRate[11][2] = { 0 };
-	int parkingLotRead[100];
-	int count = 0,countRate = 0;
+
 	// This function read and write the config file
 	// printf("%d", checkConfigExist());
 	if (checkConfigExist()) {
@@ -174,11 +180,34 @@ int parkingLotsNumberSetup() {
 
 	return parkingLotNumber;
 }
+int menu() {
+	int selection;
+	printf("========================================Just another parking system by KenSoftTH========================================\n");
+	printf("Please select from the menu below\n");
+	printf("[1] Car In\n");
+	printf("[2] Car Out\n");
+	printf("[3] Display Parking Lots\n");
+	printf("[4] End the Day and Print Parking Report (Exit)\n");
+	printf(":: ");
+	scanf("%d", &selection);
+	while (selection < 1 || selection > 4) {
+		printf("Invalid Selection!!\n");
+		printf(":: ");
+		scanf("%d", &selection);
+	}
+	return selection;
+}
+int carIn() {
+
+
+}
+
 
 void main() {
 	int *time;
+	int selection = 0;
 	time = getTime();
-	printf("Time is : %02d:%02d:%02d\nDate is : %02d/%02d/%d\n", time[3], time[4], time[5], time[2], time[1], time[0]);
 	configIO();
-
+	system("cls");
+	selection = menu();	
 }
