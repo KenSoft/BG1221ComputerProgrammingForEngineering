@@ -25,7 +25,8 @@ int getTime();
 int parkingRate[11][2] = { {0} };
 char licensePlate[1000][3];
 int parkingLotRead[100];
-int customerArray[1000][14] = { { 0 } };
+int parkingLotLeft[100];
+int customerArray[1000][15] = { { 0 } };
 int customerCount = 0;
 int count = 0, countRate = 0;
 // Functions
@@ -203,7 +204,7 @@ int menu() {
 }
 
 int carIn() {
-	int address, plate;
+	int address;
 	int *time;
 	system("cls");
 	for (address = 0; address < 1000; address++) {
@@ -212,16 +213,24 @@ int carIn() {
 		}
 
 	}
-	printf("address = %d\n", address);
+	printf("Address = %d\n", address);
+	printf("There are %d floor(s) existed.\n", parkingLotRead[0]);
 	printf("Enter the car license plate :");
-	scanf("%s %d",&licensePlate[address] , &plate);
-	while (plate < 1 || plate>9999) {
+	scanf("%s %d",&licensePlate[address] , &customerArray[address][0]);
+	while (customerArray[address][0] < 1 || customerArray[address][0]>9999) {
 		printf("Invalid Input!!\n");
 		printf("Enter the car license plate :");
-		scanf("%s %d", &licensePlate[address], &plate);
+		scanf("%s %d", &licensePlate[address], &customerArray[address][0]);
 	}
-	printf("%d\n", parkingLotRead[0]);
-	printf("The License Plate is %s%d\n", licensePlate[address], plate);
+	printf("Enter the floor : ");
+	scanf(" %d", &customerArray[address][13]);
+	while (customerArray[address][13] < 1 || customerArray[address][13] > parkingLotRead[0]) {
+		printf("Invalid Input!!\n");
+		printf("Enter the floor : ");
+		scanf(" %d", &customerArray[address][13]);
+	}
+	parkingLotLeft[customerArray[address][13]]--;
+	printf("The License Plate is %s%d\n", licensePlate[address], customerArray[address][0]);
 	time = getTime();
 	customerArray[address][1] = time[0];
 	customerArray[address][2] = time[1];
@@ -230,25 +239,49 @@ int carIn() {
 	customerArray[address][5] = time[4];
 	customerArray[address][6] = time[5];
 	printf("Time is %d/%d/%d %d:%d:%d\n", customerArray[address][3], customerArray[address][2], customerArray[address][1], customerArray[address][4], customerArray[address][5], customerArray[address][6]);
+	printf("Floor parked is %d\n", customerArray[address][13]);
 	printf("Data Saved!\n");
 	system("pause");
 	system("cls");
 	return 0;
 }
+int displayParkingLots() {
+	int countPrint = 1;
+	system("cls");
+	printf("%-10s %-10s %-10s\n", "Floor", "Capacity", "Left");
 
+	for (countPrint = 1; countPrint <= parkingLotRead[0]; countPrint++) {
+		printf("%-10d %-10d %-10d\n", countPrint, parkingLotRead[countPrint], parkingLotLeft[countPrint]);
+	}
+	system("pause");
+	system("cls");
+	return 0;
+
+
+}
 
 void main() {
 	int *time;
 	int selection = 0;
+	int countTransfer = 0;
 	time = getTime();
 	
 	configIO();
 	system("cls");
+	for (countTransfer = 0; countTransfer < 100; countTransfer++) {
+		parkingLotLeft[countTransfer] = parkingLotRead[countTransfer];
+	}
 	while (selection != 4) {
 		selection = menu();
 		switch (selection) {
 		case 1:
 			carIn();
+			break;
+		case 2:
+			//carOut();
+			break;
+		case 3:
+			displayParkingLots();
 			break;
 		default:
 			break;
