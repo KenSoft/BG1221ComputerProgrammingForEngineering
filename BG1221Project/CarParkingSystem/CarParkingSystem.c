@@ -22,8 +22,11 @@ int displayParkingLots();
 int printReport();
 int checkConfigExist();
 int getTime();
-int parkingRate[11][2] = { 0 };
+int parkingRate[11][2] = { {0} };
+char licensePlate[1000][3];
 int parkingLotRead[100];
+int customerArray[1000][14] = { { 0 } };
+int customerCount = 0;
 int count = 0, countRate = 0;
 // Functions
 int checkConfigExist() {
@@ -104,7 +107,7 @@ void configIO() {
 	}
 	else {
 		// Config file not exist, so launch the setup process!
-
+		int countTransfer = 0;
 		printf("File not Exist!\n");
 		parkingLotNumber = parkingLotsNumberSetup();
 		parkingFeeRateSetup(parkingRate);
@@ -120,8 +123,9 @@ void configIO() {
 			fprintf(file, "R %d %d\n", parkingRate[countRate][0], parkingRate[countRate][1]);
 		}
 		fclose(file);
-
-
+		for (countTransfer = 0; countTransfer < 100; countTransfer++) {
+			parkingLotRead[countTransfer] = parkingLotNumber[countTransfer];
+		}
 		printf("\nSetup Completed!\n");
 	}
 }
@@ -197,9 +201,39 @@ int menu() {
 	}
 	return selection;
 }
+
 int carIn() {
+	int address, plate;
+	int *time;
+	system("cls");
+	for (address = 0; address < 1000; address++) {
+		if (customerArray[address][0] == 0) {
+			break;
+		}
 
-
+	}
+	printf("address = %d\n", address);
+	printf("Enter the car license plate :");
+	scanf("%s %d",&licensePlate[address] , &plate);
+	while (plate < 1 || plate>9999) {
+		printf("Invalid Input!!\n");
+		printf("Enter the car license plate :");
+		scanf("%s %d", &licensePlate[address], &plate);
+	}
+	printf("%d\n", parkingLotRead[0]);
+	printf("The License Plate is %s%d\n", licensePlate[address], plate);
+	time = getTime();
+	customerArray[address][1] = time[0];
+	customerArray[address][2] = time[1];
+	customerArray[address][3] = time[2];
+	customerArray[address][4] = time[3];
+	customerArray[address][5] = time[4];
+	customerArray[address][6] = time[5];
+	printf("Time is %d/%d/%d %d:%d:%d\n", customerArray[address][3], customerArray[address][2], customerArray[address][1], customerArray[address][4], customerArray[address][5], customerArray[address][6]);
+	printf("Data Saved!\n");
+	system("pause");
+	system("cls");
+	return 0;
 }
 
 
@@ -207,7 +241,17 @@ void main() {
 	int *time;
 	int selection = 0;
 	time = getTime();
+	
 	configIO();
 	system("cls");
-	selection = menu();	
+	while (selection != 4) {
+		selection = menu();
+		switch (selection) {
+		case 1:
+			carIn();
+			break;
+		default:
+			break;
+		}
+	}
 }
