@@ -10,7 +10,7 @@ void main() {
 	char string[80];
 	int count = 0, vowel = 0, consonants = 0, digits = 0, others =0;
 	printf("Enter a line of text : ");
-	scanf("%80[^\n]", &string);
+	gets(string);
 	for (count = 0; count < 80; count++) {
 		//printf("%c", string[count]);
 		if (string[count] == '\0') {

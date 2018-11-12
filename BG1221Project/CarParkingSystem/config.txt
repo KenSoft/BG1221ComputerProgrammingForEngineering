@@ -1,9 +1,9 @@
-Floor=5
+Floor=4
 Floor 1=10
 Floor 2=20
 Floor 3=30
 Floor 4=40
-Floor 5=50
+Floor 5=0
 Floor 6=0
 Floor 7=0
 Floor 8=0
@@ -100,8 +100,8 @@ Floor 98=0
 Floor 99=0
 Rate=3
 R 15 0
-R 120 20
-R 180 3
+R 120 30
+R 300 50
 R 0 0
 R 0 0
 R 0 0
