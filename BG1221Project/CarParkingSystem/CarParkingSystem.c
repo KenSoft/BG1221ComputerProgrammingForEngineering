@@ -22,6 +22,8 @@ int displayParkingLots();
 int printReport();
 int checkConfigExist();
 int getTime();
+void listCar();
+void changeSpace();
 int parkingRate[11][2] = { {0} };
 char licensePlate[1000][3];
 int parkingLotRead[100];
@@ -252,20 +254,45 @@ int carIn() {
 	system("cls");
 	return 0;
 }
+void listCar() {
+
+}
+void changeSpace() {
+
+}
+
 int displayParkingLots() {
 	int countPrint = 1;
-	
-	system("cls");
-	printf("=====================================================Parking Lots Left==================================================\n");
-	printf("%-10s %-10s %-10s\n", "Floor", "Capacity", "Left");
+	int selection = 0;
 
-	for (countPrint = 1; countPrint <= parkingLotRead[0]; countPrint++) {
-		printf("%-10d %-10d %-10d\n", countPrint, parkingLotRead[countPrint], parkingLotLeft[countPrint]);
+
+	while (selection != 3) {
+		system("cls");
+		printf("=====================================================Parking Lots Left==================================================\n");
+		printf("%-10s %-10s %-10s\n", "Floor", "Capacity", "Left");
+
+		for (countPrint = 1; countPrint <= parkingLotRead[0]; countPrint++) {
+			printf("%-10d %-10d %-10d\n", countPrint, parkingLotRead[countPrint], parkingLotLeft[countPrint]);
+		}
+		printf("==========================================================Menu==========================================================\n");
+		printf("[1] List car in specific floor\n");
+		printf("[2] Change the parking space\n");
+		printf("[3] Back to main menu\n");
+		printf(":: ");
+		scanf("%d", &selection);
+		switch (selection) {
+		case 1:
+			listCar();
+			break;
+		case 2:
+			changeSpace();
+			break;
+		default:
+			break;
+		}
 	}
-	system("pause");
 	system("cls");
 	return 0;
-
 
 }
 int carOut() {
