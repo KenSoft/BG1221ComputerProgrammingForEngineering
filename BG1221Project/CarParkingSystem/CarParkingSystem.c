@@ -220,7 +220,7 @@ int carIn() {
 		}
 
 	}
-	printf("Address = %d\n", address);
+	//printf("Address = %d\n", address);
 	printf("There are %d floor(s) existed.\n", parkingLotRead[0]);
 	printf("Enter the car license plate :");
 	scanf("%s %d",&licensePlate[address] , &customerArray[address][0]);
@@ -265,8 +265,11 @@ void listCar() {
 	scanf(" %d", &floor);
 	printf("\n\n====================================================Car in Floor No. %d=================================================\n", floor);
 	for (address = 0; address < 1000; address++) {
-		if (customerArray[address][13] == floor) {
-			printf("%s%d\n", licensePlate[address], customerArray[address][0]);
+		if (customerArray[address][7] > 2000) {
+			
+		}
+		else if (customerArray[address][13] == floor) {
+			printf("%c%c%c%d\n",  licensePlate[address][0], licensePlate[address][1], licensePlate[address][2], customerArray[address][0]);
 		}
 
 	}
@@ -510,17 +513,36 @@ int carOut() {
 }
 void writeLog() {
 	int *time;
+	int d, m, y;
+	int count = 0;
+	int tAddress = 0;
+	int diffHours, diffMinutes, diffSeconds;
 	time = getTime();
-	char str[18];
-	strcpy(str, "good.txt");
+	d = time[2];
+	m = time[1];
+	y = time[0];
+	char str[20];
+	sprintf(str, "%02d-%02d-%d", d,m,y);
+	strcat(str, "-log.txt");
+	printf("File name %s\n", str);
 	FILE *file;
 	file = fopen(str, "w");
-	fprintf(file, "Hey!");
+	fprintf(file, "==================Summary Report==================\n");
+	fprintf(file, "%-15s %-10s %-10s %-10s %-5s %-4s\n", "License Plate", "Time In", "Time Out", "Time Parked", "Floor", "Fee");
+	for (tAddress = 0; tAddress < 1000; tAddress++) {
+		diffHours = customerArray[tAddress][10] - customerArray[tAddress][4];
+		diffMinutes = customerArray[tAddress][11] - customerArray[tAddress][5];
+		diffSeconds = customerArray[tAddress][12] - customerArray[tAddress][6];
+		fprintf(file, "%c%c%c%12d   %02d:%02d:%02d     %02d:%02d:%02d     %02d:%02d:%02d   %-5d %-4d\n", licensePlate[tAddress][0], licensePlate[tAddress][1], licensePlate[tAddress][2], customerArray[tAddress][0], customerArray[tAddress][4],
+			customerArray[tAddress][5], customerArray[tAddress][6], customerArray[tAddress][10], customerArray[tAddress][11], customerArray[tAddress][12],
+			diffHours,diffMinutes,diffSeconds, customerArray[tAddress][13], customerArray[tAddress][14]);
+		if (customerArray[tAddress+1][0] == 0) {
+			break;
+		}
+	}
+
+
 	fclose(file);
-
-
-
-
 }
 
 void main() {
