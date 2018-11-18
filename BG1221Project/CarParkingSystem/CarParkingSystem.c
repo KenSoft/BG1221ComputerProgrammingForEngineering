@@ -1,8 +1,8 @@
 /* BG1221 Computer Programming For Engineering, 1/2018
 
 Group Member:
-1.  Kasidis (Ken) Arunruangsirilert ID 6116803 Section 641
-2.	Thanyawee (Meimei) Chunhasawasdikul ID 6115300 Section 641
+1. Kasidis (Ken) Arunruangsirilert ID 6116803 Section 641
+2. Thanyawee (Meimei) Chunhasawasdikul ID 6115300 Section 641
 
 Project Due 26th November 2018
 Just Another Car Parking Management System by KenSoftTH */
