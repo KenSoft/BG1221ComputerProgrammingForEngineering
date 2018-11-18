@@ -25,6 +25,8 @@ int getTime();
 void listCar();
 void changeSpace();
 void changeFee();
+void writeLog();
+// Global Variable
 int parkingRate[11][2] = { {0} };
 char licensePlate[1000][3];
 int parkingLotRead[100];
@@ -318,12 +320,14 @@ void changeSpace() {
 		printf("Floor Updated!\n");
 		system("pause");
 	}
+	system("cls");
 }
 void changeFee() {
 	char confirm;
 	int i, j, displayLoop, selection=0;
 	system("cls");
 	while (selection != 2) {
+		system("cls");
 		printf("%-15s %-15s\n", "Time (Minutes)", "Fee per hour");
 		for (displayLoop = 0; displayLoop < parkingRate[10][0]; displayLoop++) {
 			printf("%-15d %-15d\n", parkingRate[displayLoop][0], parkingRate[displayLoop][1]);
@@ -340,6 +344,7 @@ void changeFee() {
 			printf(":: ");
 			scanf("%d", &selection);
 		}
+		system("cls");
 		switch (selection) {
 		case 1:
 			printf("[Warning] All parking rates will be in this process, continue? (Y/N) : ");
@@ -371,6 +376,7 @@ void changeFee() {
 			}
 			break;
 		default:
+			system("cls");
 			break;
 		}
 	}
@@ -502,6 +508,20 @@ int carOut() {
 	system("cls");
 	return 0;
 }
+void writeLog() {
+	int *time;
+	time = getTime();
+	char str[18];
+	strcpy(str, "good.txt");
+	FILE *file;
+	file = fopen(str, "w");
+	fprintf(file, "Hey!");
+	fclose(file);
+
+
+
+
+}
 
 void main() {
 	int *time;
@@ -530,6 +550,7 @@ void main() {
 			changeFee();
 			break;
 		default:
+			writeLog();
 			break;
 		}
 	}
