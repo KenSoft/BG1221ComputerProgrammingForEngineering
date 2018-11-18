@@ -273,7 +273,10 @@ int carOut() {
 	int *time;
 	int diffHours, diffMinutes, diffSeconds;
 	int countAddLotFree;
-	char plateLetter[3];
+	int rateCalCount;
+	long totalSecondParked;
+	int fee = 0;
+	char plateLetter[4];
 	system("cls");
 	printf("=========================================================Car Out========================================================\n");
 	if (currentCarCount != 0) {
@@ -309,8 +312,34 @@ int carOut() {
 		diffMinutes = customerArray[address][11] - customerArray[address][5];
 		diffSeconds = customerArray[address][12] - customerArray[address][6];
 		printf("Parked for %02d:%02d:%02d\n", diffHours, diffMinutes, diffSeconds);
+		//Calculate Parking Fee
+		totalSecondParked = diffSeconds;
+		totalSecondParked = totalSecondParked + (diffMinutes * 60);
+		totalSecondParked = totalSecondParked + (diffHours * 3600);
+		//Debug
+		//totalSecondParked = 600;
+		printf("Parked for %d second, calculating the fee with %d rate...\n", totalSecondParked, parkingRate[10][0]);
 
+		//Adding fee
+		if (totalSecondParked <= (parkingRate[0][0]*60)) {
+			fee = 0;
+		}
+		else {
+			for (totalSecondParked; totalSecondParked > 0; totalSecondParked) {
+				for (rateCalCount = (parkingRate[10][0] - 1); rateCalCount >= 0; rateCalCount--) {
+					if (totalSecondParked > parkingRate[rateCalCount][0]) {
+						fee = fee + parkingRate[rateCalCount][1];
+						totalSecondParked = totalSecondParked - 3600;
+					}
+					else {
+						fee = fee + parkingRate[1][1];
+					}
+				}
+			}
+		}
+		printf("The Parking fee is %d baht.\n", fee);
 		parkingLotLeft[customerArray[address][13]]++;
+		customerArray[address][14] = fee;
 		currentCarCount--;
 	}
 	else {
