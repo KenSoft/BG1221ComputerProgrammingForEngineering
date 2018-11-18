@@ -195,7 +195,7 @@ int menu() {
 	printf("[1] Car In\n");
 	printf("[2] Car Out\n");
 	printf("[3] Display Parking Lots\n");
-	printf("[4] End the Day and Print Parking Report (Exit)\n");
+	printf("[4] End the Day and Print the Report (Exit)\n");
 	printf(":: ");
 	scanf("%d", &selection);
 	while (selection < 1 || selection > 4) {
@@ -255,10 +255,67 @@ int carIn() {
 	return 0;
 }
 void listCar() {
+	int floor,address;
+	system("cls");
+	printf("Enter floor : ");
+	scanf(" %d", &floor);
+	printf("\n\n====================================================Car in Floor No. %d=================================================\n", floor);
+	for (address = 0; address < 1000; address++) {
+		if (customerArray[address][13] == floor) {
+			printf("%s%d\n", licensePlate[address], customerArray[address][0]);
+		}
 
+	}
+	system("pause");
+	system("cls");
 }
 void changeSpace() {
+	char confirm;
+	int *parkingLotNumber;
+	int countTransfer;
+	system("cls");
+	printf("[Warning] All car data will be in this process, continue? (Y/N) : ");
+	scanf(" %c", &confirm);
+	if (confirm == 'Y') {
+		int i, j;
+		for (i = 0; i < 1000; i++) {
+			for (j = 0; j < 15; j++) {
+				customerArray[i][j] = 0;
+			}
+		}
+		
+		customerCount = 0;
+		for (i = 0; i < 1000; i++) {
+			for (j = 0; j < 3; j++) {
+				licensePlate[i][j]='\0';
+			}
+		}
+		for (i = 0; i < 100; i++) {
+			parkingLotRead[i]=0;
+			parkingLotLeft[i]=0;
+		}
+		parkingLotNumber=parkingLotsNumberSetup();
+		for (countTransfer = 0; countTransfer < 100; countTransfer++) {
+			parkingLotRead[countTransfer] = parkingLotNumber[countTransfer];
+		}
+		for (countTransfer = 0; countTransfer < 100; countTransfer++) {
+			parkingLotLeft[countTransfer] = parkingLotRead[countTransfer];
+		}
+		FILE *file;
+		file = fopen("config.txt", "w");
+		fprintf(file, "Floor=%d\n", parkingLotNumber[0]);
+		for (count = 1; count <= 99; count++) {
+			fprintf(file, "Floor %d=%d\n", count, parkingLotNumber[count]);
+		}
+		fprintf(file, "Rate=%d\n", parkingRate[10][0]);
+		for (countRate = 0; countRate <= 9; countRate++) {
+			fprintf(file, "R %d %d\n", parkingRate[countRate][0], parkingRate[countRate][1]);
+		}
+		fclose(file);
 
+		printf("Floor Updated!\n");
+		system("pause");
+	}
 }
 
 int displayParkingLots() {

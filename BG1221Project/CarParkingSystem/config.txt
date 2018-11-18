@@ -1,10 +1,10 @@
-Floor=4
+Floor=6
 Floor 1=10
-Floor 2=20
-Floor 3=30
-Floor 4=40
-Floor 5=0
-Floor 6=0
+Floor 2=10
+Floor 3=10
+Floor 4=10
+Floor 5=10
+Floor 6=10
 Floor 7=0
 Floor 8=0
 Floor 9=0
