@@ -24,6 +24,7 @@ int checkConfigExist();
 int getTime();
 void listCar();
 void changeSpace();
+void changeFee();
 int parkingRate[11][2] = { {0} };
 char licensePlate[1000][3];
 int parkingLotRead[100];
@@ -194,11 +195,12 @@ int menu() {
 	printf("Please select from the menu below\n");
 	printf("[1] Car In\n");
 	printf("[2] Car Out\n");
-	printf("[3] Display Parking Lots\n");
-	printf("[4] End the Day and Print the Report (Exit)\n");
+	printf("[3] Display/Change Parking Lots\n");
+	printf("[4] Display/Change Parking Fee\n");
+	printf("[5] End the Day and Print the Report (Exit)\n");
 	printf(":: ");
 	scanf("%d", &selection);
-	while (selection < 1 || selection > 4) {
+	while (selection < 1 || selection > 5) {
 		printf("Invalid Selection!!\n");
 		printf(":: ");
 		scanf("%d", &selection);
@@ -317,7 +319,66 @@ void changeSpace() {
 		system("pause");
 	}
 }
+void changeFee() {
+	char confirm;
+	int i, j, displayLoop, selection=0;
+	system("cls");
+	while (selection != 2) {
+		printf("%-15s %-15s\n", "Time (Minutes)", "Fee per hour");
+		for (displayLoop = 0; displayLoop < parkingRate[10][0]; displayLoop++) {
+			printf("%-15d %-15d\n", parkingRate[displayLoop][0], parkingRate[displayLoop][1]);
+		}
+	
 
+		printf("==========================================================Menu==========================================================\n");
+		printf("[1] Change Parking Fee\n");
+		printf("[2] Back to main menu\n");
+		printf(":: ");
+		scanf("%d", &selection);
+		while (selection < 1 || selection > 3) {
+			printf("Invalid Selection!!\n");
+			printf(":: ");
+			scanf("%d", &selection);
+		}
+		switch (selection) {
+		case 1:
+			printf("[Warning] All parking rates will be in this process, continue? (Y/N) : ");
+			scanf(" %c", &confirm);
+			if (confirm == 'Y') {
+
+				for (i = 0; i < 1000; i++) {
+					for (j = 0; j < 15; j++) {
+						parkingRate[i][j] = 0;
+					}
+				}
+				parkingFeeRateSetup(parkingRate);
+				FILE *file;
+				file = fopen("config.txt", "w");
+				fprintf(file, "Floor=%d\n", parkingLotRead[0]);
+				for (count = 1; count <= 99; count++) {
+					fprintf(file, "Floor %d=%d\n", count, parkingLotRead[count]);
+				}
+				fprintf(file, "Rate=%d\n", parkingRate[10][0]);
+				for (countRate = 0; countRate <= 9; countRate++) {
+					fprintf(file, "R %d %d\n", parkingRate[countRate][0], parkingRate[countRate][1]);
+				}
+				fclose(file);
+
+				printf("Rate Updated!\n");
+				system("pause");
+				system("cls");
+
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	
+	
+
+	system("cls");
+}
 int displayParkingLots() {
 	int countPrint = 1;
 	int selection = 0;
@@ -337,6 +398,11 @@ int displayParkingLots() {
 		printf("[3] Back to main menu\n");
 		printf(":: ");
 		scanf("%d", &selection);
+		while (selection < 1 || selection > 3) {
+			printf("Invalid Selection!!\n");
+			printf(":: ");
+			scanf("%d", &selection);
+		}
 		switch (selection) {
 		case 1:
 			listCar();
@@ -355,11 +421,13 @@ int displayParkingLots() {
 int carOut() {
 	int plateNumber, address;
 	int *time;
+	int hrs=0;
 	int diffHours, diffMinutes, diffSeconds;
 	int countAddLotFree;
+	int loop = 0, rateAddress;
 	int rateCalCount;
-	long totalSecondParked;
-	int fee = 0;
+	int totalSecondParked;
+	int fee = 0, currentRate;
 	char plateLetter[4];
 	system("cls");
 	printf("=========================================================Car Out========================================================\n");
@@ -401,24 +469,25 @@ int carOut() {
 		totalSecondParked = totalSecondParked + (diffMinutes * 60);
 		totalSecondParked = totalSecondParked + (diffHours * 3600);
 		//Debug
-		//totalSecondParked = 600;
+		totalSecondParked = 36001;
 		printf("Parked for %d second, calculating the fee with %d rate...\n", totalSecondParked, parkingRate[10][0]);
-
 		//Adding fee
 		if (totalSecondParked <= (parkingRate[0][0]*60)) {
 			fee = 0;
 		}
 		else {
-			for (totalSecondParked; totalSecondParked > 0; totalSecondParked) {
-				for (rateCalCount = (parkingRate[10][0] - 1); rateCalCount >= 0; rateCalCount--) {
-					if (totalSecondParked > parkingRate[rateCalCount][0]) {
-						fee = fee + parkingRate[rateCalCount][1];
-						totalSecondParked = totalSecondParked - 3600;
-					}
-					else {
-						fee = fee + parkingRate[1][1];
+			while (totalSecondParked > 0) {
+				for (loop = 1; loop < parkingRate[10][0]; loop++) {
+					if (parkingRate[loop][0] > (hrs * 60)) {
+						rateAddress = loop;
+						currentRate = parkingRate[rateAddress][1];
+						break;
 					}
 				}
+				
+				fee = fee + currentRate;
+				hrs++;
+				totalSecondParked = totalSecondParked - 3600;
 			}
 		}
 		printf("The Parking fee is %d baht.\n", fee);
@@ -445,7 +514,7 @@ void main() {
 	for (countTransfer = 0; countTransfer < 100; countTransfer++) {
 		parkingLotLeft[countTransfer] = parkingLotRead[countTransfer];
 	}
-	while (selection != 4) {
+	while (selection != 5) {
 		selection = menu();
 		switch (selection) {
 		case 1:
@@ -456,6 +525,9 @@ void main() {
 			break;
 		case 3:
 			displayParkingLots();
+			break;
+		case 4:
+			changeFee();
 			break;
 		default:
 			break;
