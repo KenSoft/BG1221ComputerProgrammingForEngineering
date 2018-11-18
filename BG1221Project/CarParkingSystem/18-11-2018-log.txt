@@ -1,0 +1,16 @@
+==================Summary Report==================
+License Plate   Time In    Time Out   Time Parked Floor Fee 
+Î· 3456           20:26:59     20:38:41     00:11:42   2     0   
+¤µ 7334           20:27:24     00:00:00     00:00:00   4     0   
+¹Â 9383           20:27:35     00:00:00     00:00:00   3     0   
+9¡¾9929           20:27:46     00:00:00     00:00:00   5     0   
+1¡Ã9355           20:28:01     20:36:49     00:08:48   6     0   
+
+Total Car in the Database: 5
+Total Fee received = 0
+
+Cars that left overnight
+License Plate Floor5
+¤µ 7334         4    
+¹Â 9383         3    
+9¡¾9929         5    

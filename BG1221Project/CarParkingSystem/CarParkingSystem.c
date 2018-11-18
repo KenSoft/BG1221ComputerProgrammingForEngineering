@@ -118,6 +118,7 @@ void configIO() {
 		printf("File not Exist!\n");
 		parkingLotNumber = parkingLotsNumberSetup();
 		parkingFeeRateSetup(parkingRate);
+		system("pause");
 
 		FILE *file;
 		file = fopen("config.txt", "w");
@@ -562,7 +563,7 @@ void writeLog() {
 			break;
 		}
 	}
-	fprintf(file, "\nTotal Car in the Database: %d\n", tAddress);
+	fprintf(file, "\nTotal Car in the Database: %d\n", tAddress+1);
 	fprintf(file, "Total Fee received = %d\n\n", totalFee);
 	fprintf(file, "Cars that left overnight\n");
 	fprintf(file, "%12s %s5\n", "License Plate", "Floor");
@@ -578,7 +579,7 @@ void writeLog() {
 
 	fclose(file);
 }
-
+// Main Function
 void main() {
 	int *time;
 	int selection = 0;
