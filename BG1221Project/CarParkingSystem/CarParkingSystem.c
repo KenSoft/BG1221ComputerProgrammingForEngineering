@@ -472,13 +472,21 @@ int carOut() {
 		diffHours = customerArray[address][10] - customerArray[address][4];
 		diffMinutes = customerArray[address][11] - customerArray[address][5];
 		diffSeconds = customerArray[address][12] - customerArray[address][6];
+		if (diffSeconds < 0) {
+			diffSeconds = diffSeconds + 60;
+			diffMinutes--;
+		}
+		if (diffMinutes < 0) {
+			diffMinutes = diffMinutes + 60;
+			diffHours--;
+		}
 		printf("Parked for %02d:%02d:%02d\n", diffHours, diffMinutes, diffSeconds);
 		//Calculate Parking Fee
 		totalSecondParked = diffSeconds;
 		totalSecondParked = totalSecondParked + (diffMinutes * 60);
 		totalSecondParked = totalSecondParked + (diffHours * 3600);
 		//Debug
-		totalSecondParked = 36001;
+		//totalSecondParked = 36001;
 		printf("Parked for %d second, calculating the fee with %d rate...\n", totalSecondParked, parkingRate[10][0]);
 		//Adding fee
 		if (totalSecondParked <= (parkingRate[0][0]*60)) {
@@ -516,6 +524,8 @@ void writeLog() {
 	int d, m, y;
 	int count = 0;
 	int tAddress = 0;
+	int address = 0;
+	int totalFee = 0;
 	int diffHours, diffMinutes, diffSeconds;
 	time = getTime();
 	d = time[2];
@@ -533,13 +543,37 @@ void writeLog() {
 		diffHours = customerArray[tAddress][10] - customerArray[tAddress][4];
 		diffMinutes = customerArray[tAddress][11] - customerArray[tAddress][5];
 		diffSeconds = customerArray[tAddress][12] - customerArray[tAddress][6];
-		fprintf(file, "%c%c%c%12d   %02d:%02d:%02d     %02d:%02d:%02d     %02d:%02d:%02d   %-5d %-4d\n", licensePlate[tAddress][0], licensePlate[tAddress][1], licensePlate[tAddress][2], customerArray[tAddress][0], customerArray[tAddress][4],
+		if (diffSeconds < 0) {
+			diffSeconds = diffSeconds + 60;
+			diffMinutes--;
+		}
+		if (diffMinutes < 0) {
+			diffMinutes = diffMinutes + 60;
+			diffHours--;
+		}
+		if (diffHours < 0) {
+			diffHours = diffMinutes = diffSeconds = 0;
+		}
+		fprintf(file, "%c%c%c%-12d   %02d:%02d:%02d     %02d:%02d:%02d     %02d:%02d:%02d   %-5d %-4d\n", licensePlate[tAddress][0], licensePlate[tAddress][1], licensePlate[tAddress][2], customerArray[tAddress][0], customerArray[tAddress][4],
 			customerArray[tAddress][5], customerArray[tAddress][6], customerArray[tAddress][10], customerArray[tAddress][11], customerArray[tAddress][12],
 			diffHours,diffMinutes,diffSeconds, customerArray[tAddress][13], customerArray[tAddress][14]);
+		totalFee = totalFee + customerArray[tAddress][14];
 		if (customerArray[tAddress+1][0] == 0) {
 			break;
 		}
 	}
+	fprintf(file, "\nTotal Car in the Database: %d\n", tAddress);
+	fprintf(file, "Total Fee received = %d\n\n", totalFee);
+	fprintf(file, "Cars that left overnight\n");
+	fprintf(file, "%12s %s5\n", "License Plate", "Floor");
+	for (address = 0; address <= tAddress; address++) {
+		if (customerArray[address][7] < 2000) {
+			fprintf(file,"%c%c%c%-12d %-5d\n", licensePlate[address][0], licensePlate[address][1], licensePlate[address][2], customerArray[address][0], customerArray[address][13]);
+		}
+
+	}
+
+
 
 
 	fclose(file);
