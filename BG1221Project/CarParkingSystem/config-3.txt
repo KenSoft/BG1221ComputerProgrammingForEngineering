@@ -1,0 +1,111 @@
+Floor=6
+Floor 1=10
+Floor 2=10
+Floor 3=10
+Floor 4=10
+Floor 5=10
+Floor 6=10
+Floor 7=0
+Floor 8=0
+Floor 9=0
+Floor 10=0
+Floor 11=0
+Floor 12=0
+Floor 13=0
+Floor 14=0
+Floor 15=0
+Floor 16=0
+Floor 17=0
+Floor 18=0
+Floor 19=0
+Floor 20=0
+Floor 21=0
+Floor 22=0
+Floor 23=0
+Floor 24=0
+Floor 25=0
+Floor 26=0
+Floor 27=0
+Floor 28=0
+Floor 29=0
+Floor 30=0
+Floor 31=0
+Floor 32=0
+Floor 33=0
+Floor 34=0
+Floor 35=0
+Floor 36=0
+Floor 37=0
+Floor 38=0
+Floor 39=0
+Floor 40=0
+Floor 41=0
+Floor 42=0
+Floor 43=0
+Floor 44=0
+Floor 45=0
+Floor 46=0
+Floor 47=0
+Floor 48=0
+Floor 49=0
+Floor 50=0
+Floor 51=0
+Floor 52=0
+Floor 53=0
+Floor 54=0
+Floor 55=0
+Floor 56=0
+Floor 57=0
+Floor 58=0
+Floor 59=0
+Floor 60=0
+Floor 61=0
+Floor 62=0
+Floor 63=0
+Floor 64=0
+Floor 65=0
+Floor 66=0
+Floor 67=0
+Floor 68=0
+Floor 69=0
+Floor 70=0
+Floor 71=0
+Floor 72=0
+Floor 73=0
+Floor 74=0
+Floor 75=0
+Floor 76=0
+Floor 77=0
+Floor 78=0
+Floor 79=0
+Floor 80=0
+Floor 81=0
+Floor 82=0
+Floor 83=0
+Floor 84=0
+Floor 85=0
+Floor 86=0
+Floor 87=0
+Floor 88=0
+Floor 89=0
+Floor 90=0
+Floor 91=0
+Floor 92=0
+Floor 93=0
+Floor 94=0
+Floor 95=0
+Floor 96=0
+Floor 97=0
+Floor 98=0
+Floor 99=0
+Rate=4
+R 60 0
+R 180 20
+R 240 40
+R 300 50
+R 0 0
+R 0 0
+R 0 0
+R 0 0
+R 0 0
+R 0 0

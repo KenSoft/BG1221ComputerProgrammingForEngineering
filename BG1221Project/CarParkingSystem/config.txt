@@ -1,10 +1,10 @@
 Floor=6
-Floor 1=10
-Floor 2=10
-Floor 3=10
-Floor 4=10
-Floor 5=10
-Floor 6=10
+Floor 1=20
+Floor 2=20
+Floor 3=20
+Floor 4=20
+Floor 5=20
+Floor 6=20
 Floor 7=0
 Floor 8=0
 Floor 9=0
@@ -98,11 +98,11 @@ Floor 96=0
 Floor 97=0
 Floor 98=0
 Floor 99=0
-Rate=4
-R 60 0
-R 180 20
-R 240 40
-R 300 50
+Rate=3
+R 15 0
+R 120 20
+R 240 50
+R 0 0
 R 0 0
 R 0 0
 R 0 0
