@@ -155,11 +155,14 @@ int parkingFeeRateSetup(int rate[11][2]) {
 	printf("How many parking fee rate are there? (including free parking) :");
 	scanf("%d", &rateCount);
 	rate[10][0] = rateCount;
+	// Check for Invalid Data
 	while (rateCount < 1 || rateCount>10) {
 		printf("Incorrect Input!! How many parking fee rate are there? (including free parking) :");
 		scanf("%d", &rateCount);
 	}
+	// loop scanf
 	for (count = 0; count < rateCount; count++) {
+		// First time --> Free Parking
 		if (count == 0) {
 			printf("How much time (in minutes) can people park without any fee?:");
 			scanf("%d", &rate[0][0]);
@@ -167,6 +170,7 @@ int parkingFeeRateSetup(int rate[11][2]) {
 			printf("%-15s %-15s\n", "Time (Minutes)", "Fee per hour");
 			printf("%-15d %-15d\n", rate[0][0], rate[0][1]);
 		}
+		// Next time is a normal rate
 		else {
 			printf("\nHow many hours from the start does this rate apply?:");
 			scanf("%d", &hour);
@@ -207,6 +211,7 @@ int parkingLotsNumberSetup() {
 }
 int menu() {
 	int selection;
+	// printf the menu
 	printf("========================================Just another parking system by KenSoftTH========================================\n");
 	printf("Please select from the menu below\n");
 	printf("[1] Car In\n");
@@ -215,7 +220,9 @@ int menu() {
 	printf("[4] Display/Change Parking Fee\n");
 	printf("[5] End the Day and Print the Report (Exit)\n");
 	printf(":: ");
+	// scanf the user selection
 	scanf("%d", &selection);
+	// Check for invalid selection
 	while (selection < 1 || selection > 5) {
 		printf("Invalid Selection!!\n");
 		printf(":: ");
@@ -226,8 +233,10 @@ int menu() {
 int carIn() {
 	int address;
 	int *time;
+	// printf the menu
 	system("cls");
 	printf("=========================================================Car In=========================================================\n");
+	// Check for empty space in array
 	for (address = 0; address < 1000; address++) {
 		if (customerArray[address][0] == 0) {
 			break;
@@ -236,15 +245,19 @@ int carIn() {
 	}
 	//printf("Address = %d\n", address);
 	printf("There are %d floor(s) existed.\n", parkingLotRead[0]);
+	// Take car license plate
 	printf("Enter the car license plate :");
 	scanf("%s %d",&licensePlate[address] , &customerArray[address][0]);
+	// Check for invalid license plate
 	while (customerArray[address][0] < 1 || customerArray[address][0]>9999) {
 		printf("Invalid Input!!\n");
 		printf("Enter the car license plate :");
 		scanf("%s %d", &licensePlate[address], &customerArray[address][0]);
 	}
+	// Enter the floor that the car going to park
 	printf("Enter the floor : ");
 	scanf(" %d", &customerArray[address][13]);
+	// Check if the input is invalid or the floor is full
 	while (customerArray[address][13] < 1 || customerArray[address][13] > parkingLotRead[0] || parkingLotLeft[customerArray[address][13]] == 0) {
 		if (customerArray[address][13] < 1 || customerArray[address][13] > parkingLotRead[0]) {
 			printf("Invalid Input!!\n");
@@ -255,7 +268,9 @@ int carIn() {
 		printf("Enter the floor : ");
 		scanf(" %d", &customerArray[address][13]);
 	}
+	// Take out empty space from that floor
 	parkingLotLeft[customerArray[address][13]]--;
+	// printf the data and save the timestamp to array
 	printf("The License Plate is %s%d\n", licensePlate[address], customerArray[address][0]);
 	time = getTime();
 	customerArray[address][1] = time[0];
@@ -267,17 +282,23 @@ int carIn() {
 	printf("Time is %d/%d/%d %02d:%02d:%02d\n", customerArray[address][3], customerArray[address][2], customerArray[address][1], customerArray[address][4], customerArray[address][5], customerArray[address][6]);
 	printf("Floor parked is %d\n", customerArray[address][13]);
 	printf("Data Saved!\n");
+	// Add total car count by one
 	currentCarCount++;
+	// Pause the console so user can see the data
 	system("pause");
+	// Clear the console to display menu
 	system("cls");
 	return 0;
 }
 void listCar() {
 	int floor,address;
+	// Clear previous screen
 	system("cls");
+	// Receive the floor number input from user
 	printf("Enter floor : ");
 	scanf(" %d", &floor);
 	printf("\n\n====================================================Car in Floor No. %d=================================================\n", floor);
+	// Query all car on that floor
 	for (address = 0; address < 1000; address++) {
 		if (customerArray[address][7] > 2000) {
 			
@@ -287,16 +308,20 @@ void listCar() {
 		}
 
 	}
+	// Pause the console
 	system("pause");
 	system("cls");
 }
 void changeSpace() {
+	// Declare Variables
 	char confirm;
 	int *parkingLotNumber;
 	int countTransfer;
+	// Clear screen and print the menu
 	system("cls");
 	printf("[Warning] All car data will be in this process, continue? (Y/N) : ");
 	scanf(" %c", &confirm);
+	// If yes, clear the array and launch the setup wizard.
 	if (confirm == 'Y') {
 		int i, j;
 		for (i = 0; i < 1000; i++) {
@@ -316,12 +341,14 @@ void changeSpace() {
 			parkingLotLeft[i]=0;
 		}
 		parkingLotNumber=parkingLotsNumberSetup();
+		// Transfer new data to array
 		for (countTransfer = 0; countTransfer < 100; countTransfer++) {
 			parkingLotRead[countTransfer] = parkingLotNumber[countTransfer];
 		}
 		for (countTransfer = 0; countTransfer < 100; countTransfer++) {
 			parkingLotLeft[countTransfer] = parkingLotRead[countTransfer];
 		}
+		// Write the changes to file
 		FILE *file;
 		file = fopen("config.txt", "w");
 		fprintf(file, "Floor=%d\n", parkingLotNumber[0]);
@@ -340,40 +367,49 @@ void changeSpace() {
 	system("cls");
 }
 void changeFee() {
+	// Declare Variables
 	char confirm;
 	int i, j, displayLoop, selection=0;
+	// Clear the console
 	system("cls");
+	// printf the parking fee rate
 	while (selection != 2) {
 		system("cls");
 		printf("%-15s %-15s\n", "Time (Minutes)", "Fee per hour");
 		for (displayLoop = 0; displayLoop < parkingRate[10][0]; displayLoop++) {
 			printf("%-15d %-15d\n", parkingRate[displayLoop][0], parkingRate[displayLoop][1]);
 		}
-	
+	// printf the menu
 
 		printf("==========================================================Menu==========================================================\n");
 		printf("[1] Change Parking Fee\n");
 		printf("[2] Back to main menu\n");
 		printf(":: ");
 		scanf("%d", &selection);
+		// check if the selection valid
 		while (selection < 1 || selection > 3) {
 			printf("Invalid Selection!!\n");
 			printf(":: ");
 			scanf("%d", &selection);
 		}
+		// clear the console
 		system("cls");
 		switch (selection) {
+			//if user select 1, process to parking rate modification wizard.
 		case 1:
+			//ask for the last confirmation.
 			printf("[Warning] All parking rates will be in this process, continue? (Y/N) : ");
 			scanf(" %c", &confirm);
 			if (confirm == 'Y') {
-
+				// clear the array
 				for (i = 0; i < 1000; i++) {
 					for (j = 0; j < 15; j++) {
 						parkingRate[i][j] = 0;
 					}
 				}
+				// launch the wizard
 				parkingFeeRateSetup(parkingRate);
+				// write changes to file
 				FILE *file;
 				file = fopen("config.txt", "w");
 				fprintf(file, "Floor=%d\n", parkingLotRead[0]);
@@ -385,13 +421,14 @@ void changeFee() {
 					fprintf(file, "R %d %d\n", parkingRate[countRate][0], parkingRate[countRate][1]);
 				}
 				fclose(file);
-
+				// inform the user and pause the console.
 				printf("Rate Updated!\n");
 				system("pause");
 				system("cls");
 
 			}
 			break;
+		// else go to main menu
 		default:
 			system("cls");
 			break;
@@ -403,10 +440,11 @@ void changeFee() {
 	system("cls");
 }
 int displayParkingLots() {
+	// declare variable
 	int countPrint = 1;
 	int selection = 0;
 
-
+	// printf the menu and parking space
 	while (selection != 3) {
 		system("cls");
 		printf("=====================================================Parking Lots Left==================================================\n");
@@ -420,12 +458,14 @@ int displayParkingLots() {
 		printf("[2] Change the parking space\n");
 		printf("[3] Back to main menu\n");
 		printf(":: ");
+		// accept and validate user's selection
 		scanf("%d", &selection);
 		while (selection < 1 || selection > 3) {
 			printf("Invalid Selection!!\n");
 			printf(":: ");
 			scanf("%d", &selection);
 		}
+		// switch-case based on the selection
 		switch (selection) {
 		case 1:
 			listCar();
@@ -437,11 +477,13 @@ int displayParkingLots() {
 			break;
 		}
 	}
+	// clear the console
 	system("cls");
 	return 0;
 
 }
 int carOut() {
+	// Declare variables
 	int plateNumber, address;
 	int *time;
 	int hrs=0;
@@ -453,10 +495,13 @@ int carOut() {
 	int fee = 0, currentRate;
 	char plateLetter[4];
 	system("cls");
+	// printf the menu
 	printf("=========================================================Car Out========================================================\n");
+	// check if car exist in the parking facility
 	if (currentCarCount != 0) {
 		printf("Enter the car license plate :");
 		scanf("%s %d", &plateLetter, &plateNumber);
+		// receive the license plate and validates
 		for (address = 0; address < 1001; address++) {
 			// printf("%d %d", plateNumber, customerArray[address][0]);
 			//printf("%c %c %c %c %c %c", plateLetter[0], plateLetter[1], plateLetter[2], licensePlate[address][0], licensePlate[address][1], licensePlate[address][2]);
@@ -464,6 +509,7 @@ int carOut() {
 				break;
 			}
 		}
+		// check if the license plate valid
 		while (address == 1001) {
 			printf("Not Found!! Please Re-enter\n");
 			printf("Enter the car license plate :");
@@ -474,7 +520,9 @@ int carOut() {
 				}
 			}
 		}
+		// just another debugging stuff
 		printf("Address = %d\n", address);
+		// read time from the system and store in car out time
 		time = getTime();
 		customerArray[address][7] = time[0];
 		customerArray[address][8] = time[1];
@@ -482,10 +530,11 @@ int carOut() {
 		customerArray[address][10] = time[3];
 		customerArray[address][11] = time[4];
 		customerArray[address][12] = time[5];
-
+		// find the parking time for the car by subtract final time by initial
 		diffHours = customerArray[address][10] - customerArray[address][4];
 		diffMinutes = customerArray[address][11] - customerArray[address][5];
 		diffSeconds = customerArray[address][12] - customerArray[address][6];
+		// time digit stuff
 		if (diffSeconds < 0) {
 			diffSeconds = diffSeconds + 60;
 			diffMinutes--;
@@ -521,19 +570,23 @@ int carOut() {
 				totalSecondParked = totalSecondParked - 3600;
 			}
 		}
+		// print the fee
 		printf("The Parking fee is %d baht.\n", fee);
 		parkingLotLeft[customerArray[address][13]]++;
 		customerArray[address][14] = fee;
 		currentCarCount--;
 	}
+	// If no car is found in the array
 	else {
 		printf("Error! No car parked yet!!\n");
 	}
+	// pause the console
 	system("pause");
 	system("cls");
 	return 0;
 }
 void writeLog() {
+	// declare variables
 	int *time;
 	int d, m, y;
 	int count = 0;
@@ -541,18 +594,23 @@ void writeLog() {
 	int address = 0;
 	int totalFee = 0;
 	int diffHours, diffMinutes, diffSeconds;
+	// read date from the system
 	time = getTime();
 	d = time[2];
 	m = time[1];
 	y = time[0];
 	char str[20];
+	//concat the string to make the file name
 	sprintf(str, "%02d-%02d-%d", d,m,y);
 	strcat(str, "-log.txt");
 	printf("File name %s\n", str);
+	//open file for writing
 	FILE *file;
 	file = fopen(str, "w");
+	//file content writing starting here
 	fprintf(file, "==================Summary Report==================\n");
 	fprintf(file, "%-15s %-10s %-10s %-10s %-5s %-4s\n", "License Plate", "Time In", "Time Out", "Time Parked", "Floor", "Fee");
+	//writing element of an array up to 1,000 of them
 	for (tAddress = 0; tAddress < 1000; tAddress++) {
 		diffHours = customerArray[tAddress][10] - customerArray[tAddress][4];
 		diffMinutes = customerArray[tAddress][11] - customerArray[tAddress][5];
@@ -572,10 +630,12 @@ void writeLog() {
 			customerArray[tAddress][5], customerArray[tAddress][6], customerArray[tAddress][10], customerArray[tAddress][11], customerArray[tAddress][12],
 			diffHours,diffMinutes,diffSeconds, customerArray[tAddress][13], customerArray[tAddress][14]);
 		totalFee = totalFee + customerArray[tAddress][14];
+		//check if the next array element empty
 		if (customerArray[tAddress+1][0] == 0) {
 			break;
 		}
 	}
+	//car that left overnight
 	fprintf(file, "\nTotal Car in the Database: %d\n", tAddress+1);
 	fprintf(file, "Total Fee received = %d\n\n", totalFee);
 	fprintf(file, "Cars that left overnight\n");
@@ -587,7 +647,7 @@ void writeLog() {
 
 	}
 
-
+	//close the file --> save to disk
 
 
 	fclose(file);
