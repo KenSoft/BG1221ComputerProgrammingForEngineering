@@ -370,7 +370,7 @@ void changeSpace() {
 void changeFee() {
 	// Declare Variables
 	char confirm;
-	int i, j, displayLoop, selection=0;
+	int i, j, displayLoop, selection=0, countTransfer;
 	// Clear the console
 	system("cls");
 	// printf the parking fee rate
@@ -399,7 +399,7 @@ void changeFee() {
 			//if user select 1, process to parking rate modification wizard.
 		case 1:
 			//ask for the last confirmation.
-			printf("[Warning] All parking rates will be in this process, continue? (Y/N) : ");
+			printf("[Warning] All parking rates and cars will be in this process, continue? (Y/N) : ");
 			scanf(" %c", &confirm);
 			if (confirm == 'Y') {
 				// clear the array
@@ -407,6 +407,25 @@ void changeFee() {
 					for (j = 0; j < 15; j++) {
 						parkingRate[i][j] = 0;
 					}
+				}
+				for (i = 0; i < 1000; i++) {
+					for (j = 0; j < 15; j++) {
+						customerArray[i][j] = 0;
+					}
+				}
+
+				customerCount = 0;
+				for (i = 0; i < 1000; i++) {
+					for (j = 0; j < 3; j++) {
+						licensePlate[i][j] = '\0';
+					}
+				}
+				for (i = 0; i < 100; i++) {
+					parkingLotLeft[i] = 0;
+				}
+				// Transfer new data to array
+				for (countTransfer = 0; countTransfer < 100; countTransfer++) {
+					parkingLotLeft[countTransfer] = parkingLotRead[countTransfer];
 				}
 				// launch the wizard
 				parkingFeeRateSetup(parkingRate);
