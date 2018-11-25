@@ -160,6 +160,7 @@ int parkingFeeRateSetup(int rate[11][2]) {
 		printf("Incorrect Input!! How many parking fee rate are there? (including free parking) :");
 		scanf("%d", &rateCount);
 	}
+	rate[10][0] = rateCount;
 	// loop scanf
 	for (count = 0; count < rateCount; count++) {
 		// First time --> Free Parking
