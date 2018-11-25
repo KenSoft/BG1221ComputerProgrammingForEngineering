@@ -1,0 +1,10 @@
+==================Summary Report==================
+License Plate   Time In    Time Out   Time Parked Floor Fee 
+abc0              00:00:00     00:00:00     00:00:00   0     0   
+
+Total Car in the Database: 1
+Total Fee received = 0
+
+Cars that left overnight
+License Plate Floor5
+abc0            0    
